@@ -1,0 +1,35 @@
+<h2 class="m-3">Users</h2>
+<div class="d-flex justify-content-end my-2">
+  <button class="btn btn-rounded btn-primary" (click)="addUser()">
+    Add User
+  </button>
+</div>
+<div class="m-3" *ngIf="loading$ | async">Loading....</div>
+
+<ng-container *ngIf="users$ | async as users">
+  <table class="table table-striped m-2">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <button
+            class="btn btn-rounded btn-danger"
+            (click)="removeUser(user.id)"
+          >
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
